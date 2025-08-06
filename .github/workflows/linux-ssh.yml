@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-22.04
     steps: 
     - uses: actions/checkout@v4
-    - name: ZeroTier
-      uses: zerotier/github-action@v1.0.1
-      with:
-        network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
     - name: Preparing Linux Environment
       run: sudo apt-get update
     - name: Setting Up the Ubuntu Environment
       run: sudo apt-get install openssh-server
     - name: Running ssh
       run: service ssh start
+    - name: Installing zerotier
+      run: curl -s https://install.zerotier.com | sudo bash
+    - name: Run zerotier
+    - run: zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
   
  
