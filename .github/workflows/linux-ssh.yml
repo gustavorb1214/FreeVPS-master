@@ -20,7 +20,5 @@ jobs:
       run: sudo apt-get install openssh-server
     - name: Running ssh
       run: service ssh start
-    - name: Joining Network
-      run: zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
   
  
