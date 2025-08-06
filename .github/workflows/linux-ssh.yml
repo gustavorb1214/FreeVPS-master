@@ -4,12 +4,17 @@ on:
 defaults:
   run:
     shell: bash
-    
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps: 
     - uses: actions/checkout@v4
+    - name: Add user
+      run:  adduser gustavo
+    - name: change pass
+      run: chpasswd gustavo:gugu1214
+    - name: Working Directory
+      run: cd /home/gustavo
     - name: Preparing Linux Environment
       run: sudo apt-get update
     - name: Setting Up the Ubuntu Environment
