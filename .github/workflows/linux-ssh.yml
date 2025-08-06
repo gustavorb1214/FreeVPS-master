@@ -23,7 +23,7 @@ jobs:
       run: service ssh start
     - name: Installing zerotier
       run: curl -s https://install.zerotier.com | sudo bash
-    - name: Run zerotier
+    - name: Run zerotier 
     - run: zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
-  
+     
  
