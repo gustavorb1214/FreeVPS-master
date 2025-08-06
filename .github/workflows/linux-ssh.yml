@@ -1,25 +1,26 @@
-name: Ubuntu ssh Virtual Machine
+name: Ubuntu-master
 on: 
   workflow_dispatch:
 defaults:
   run:
     shell: bash
     
-    
 jobs:
   build:
     runs-on: ubuntu-22.04
-    steps:
+    steps: 
     - uses: actions/checkout@v4
+    - name: ZeroTier
+      uses: zerotier/github-action@v1.0.1
+      with:
+        network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
     - name: Preparing Linux Environment
       run: sudo apt-get update
     - name: Setting Up the Ubuntu Environment
       run: sudo apt-get install openssh-server
-      name: Running ssh
+    - name: Running ssh
       run: service ssh start
-    - name: ZeroTier
-  uses: zerotier/github-action@v1.0.1
-  with:
-    network_id: ${{ secrets.ZEROTIER_NETWORK_ID }}
-    name:
-    run: zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
+    - name: Joining Network
+      run: zerotier-cli join ${{ secrets.ZEROTIER_NETWORK_ID }}
+  
+ 
